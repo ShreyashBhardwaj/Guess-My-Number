@@ -1,18 +1,27 @@
 "use strict";
+
+function newRandomValue() {
+  return Math.trunc(Math.random() * 20) + 1;
+}
+
 let scoreGUI = document.querySelector(".score");
 let score = 20;
 let body = document.querySelector("body");
 let highScore = document.querySelector(".highscore");
 let currentHighScore = Number(document.querySelector(".highscore").innerHTML);
-let secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = newRandomValue();
 const actualValue = document.querySelector(".number");
 
 const checkButton = document.querySelector(".check");
 const message = document.querySelector(".message");
 
+function displayMSG(msg) {
+  message.innerHTML = msg;
+}
+
 function checkValue(playerGuess) {
   if (playerGuess === secretNumber) {
-    message.innerHTML = "You did it great 🎉";
+    displayMSG("You did it great 🎉");
 
     // Style
     body.style.backgroundColor = "#60b347";
@@ -25,10 +34,9 @@ function checkValue(playerGuess) {
     }
   } else {
     if (score === 0) {
-      message.innerHTML = "Game Over 😞";
+      displayMSG("Game Over 😞");
     } else {
-      message.innerHTML =
-        playerGuess > secretNumber ? "Too High 😥" : "Too Low 😥";
+      displayMSG(playerGuess > secretNumber ? "Too High 😥" : "Too Low 😥");
       score -= 1;
     }
     scoreGUI.innerHTML = score;
@@ -42,14 +50,14 @@ function resetGame() {
   actualValue.style.width = "15rem";
   actualValue.innerHTML = "?";
   document.querySelector(".guess").value = "";
-  message.innerHTML = "Start guessing...";
-  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  displayMSG("Start guessing...");
+  secretNumber = newRandomValue();
 }
 
 checkButton.addEventListener("click", function () {
   let playerGuess = Number(document.querySelector(".guess").value);
   if (!playerGuess) {
-    message.innerHTML = "Enter a Number Please!";
+    displayMSG("Enter a Number Please!");
   } else {
     checkValue(playerGuess);
   }
