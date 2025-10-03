@@ -14,8 +14,11 @@ function checkValue(playerGuess) {
   if (playerGuess === secretNumber) {
     message.innerHTML = "You did it great 🎉";
     highScore.innerHTML = scoreGUI;
+
+    // Style
     document.querySelector("body").style.backgroundColor = "#60b347";
     actualValue.innerHTML = secretNumber;
+    actualValue.style.width = "20rem";
 
     if (score > currentHighScore) {
       highScore.innerHTML = score;
