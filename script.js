@@ -47,3 +47,8 @@ checkButton.addEventListener("click", function () {
     checkValue(playerGuess);
   }
 });
+
+const again = document.querySelector(".again");
+again.addEventListener("click", function () {
+  location.reload(true);
+});
