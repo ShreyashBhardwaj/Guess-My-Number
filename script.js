@@ -21,12 +21,17 @@ function checkValue(playerGuess) {
       highScore.innerHTML = score;
     }
   } else {
-    if (playerGuess > secretNumber) {
-      message.innerHTML = "Too High 😥";
+    if (score === 0) {
+      message.innerHTML = "Game Over 😞";
     } else {
-      message.innerHTML = "Too Low 😥";
+      if (playerGuess > secretNumber) {
+        message.innerHTML = "Too High 😥";
+        score -= 1;
+      } else {
+        message.innerHTML = "Too Low 😥";
+        score -= 1;
+      }
     }
-    score -= 1;
     scoreGUI.innerHTML = score;
   }
 }
