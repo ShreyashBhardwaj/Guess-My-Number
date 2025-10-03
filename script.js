@@ -1,6 +1,7 @@
 "use strict";
 let scoreGUI = document.querySelector(".score");
 let score = 20;
+let body = document.querySelector("body");
 let highScore = document.querySelector(".highscore");
 let currentHighScore = Number(document.querySelector(".highscore").innerHTML);
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
@@ -14,7 +15,7 @@ function checkValue(playerGuess) {
     message.innerHTML = "You did it great 🎉";
 
     // Style
-    document.querySelector("body").style.backgroundColor = "#60b347";
+    body.style.backgroundColor = "#60b347";
     actualValue.innerHTML = secretNumber;
     actualValue.style.width = "20rem";
 
@@ -26,13 +27,9 @@ function checkValue(playerGuess) {
     if (score === 0) {
       message.innerHTML = "Game Over 😞";
     } else {
-      if (playerGuess > secretNumber) {
-        message.innerHTML = "Too High 😥";
-        score -= 1;
-      } else {
-        message.innerHTML = "Too Low 😥";
-        score -= 1;
-      }
+      message.innerHTML =
+        playerGuess > secretNumber ? "Too High 😥" : "Too Low 😥";
+      score -= 1;
     }
     scoreGUI.innerHTML = score;
   }
@@ -41,7 +38,7 @@ function checkValue(playerGuess) {
 function resetGame() {
   scoreGUI.innerHTML = 20;
   score = 20;
-  document.querySelector("body").style.backgroundColor = "#222";
+  body.style.backgroundColor = "#222";
   actualValue.style.width = "15rem";
   actualValue.innerHTML = "?";
   document.querySelector(".guess").value = "";
