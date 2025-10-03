@@ -50,5 +50,10 @@ checkButton.addEventListener("click", function () {
 
 const again = document.querySelector(".again");
 again.addEventListener("click", function () {
-  location.reload(true);
+  scoreGUI.innerHTML = 20;
+  document.querySelector("body").style.backgroundColor = "#222";
+  actualValue.style.width = "15rem";
+  actualValue.innerHTML = "?";
+  document.querySelector(".guess").value = "";
+  message.innerHTML = "Start guessing...";
 });
